@@ -53,7 +53,39 @@ message NavSatMultipath
   /// \brief ID of reference frame
   string frame_id              = 8;
 
-  repeated double satellite_ranges              = 9;
-  repeated double dop                           = 10;
-  repeated string satellite_name                = 11;
+  /// \brief Horizontal DOP 
+  double hdop                  = 9;
+
+  /// \brief Position DOP
+  double pdop                  = 10;
+
+  /// \brief Time DOP
+  double tdop                  = 11;
+
+  /// \brief Geometric DOP
+  double gdop                  = 12;
+
+  message SatelliteECEF
+  {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+  }
+  message SatelliteAngle
+  {
+    double azimuth = 1;
+    double elevation = 2;
+  }
+
+  /// \brief Visible Satellite Names 
+  repeated string satellite_name               = 13;
+  
+  /// \brief Visible Satellite Ranges 
+  repeated double satellite_range              = 14;
+  
+  /// \brief Visible Satellite Positions
+  repeated SatelliteECEF satellite_ecef        = 15;
+  
+  /// \brief Visible Satellite Angles 
+  repeated SatelliteAngle satellite_angle      = 16;
 }
